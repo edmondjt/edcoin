@@ -1,3 +1,6 @@
+**python-blockchain**
+A blockchain and cryptocurrency built with Python, JavaScript, and React
+
 **Activate the virtual environment**
 
 ```
@@ -15,10 +18,7 @@ Make sure to activate the virtual environment.
 
 ```
 python3 -m pytest backend/tests
-``
+```
 
 
 
-
-# python-blockchain
-A blockchain and cryptocurrency built with Python, JavaScript, and React
