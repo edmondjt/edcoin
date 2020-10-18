@@ -21,7 +21,7 @@ class Blockchain:
           - The incoming chain is formatted properly.
         """
         if len(chain) <= len(self.chain):
-            raise Exception('Cannot replace. The incoming chain must be longer')
+            raise Exception('Cannot replace. The incoming chain must be longer.')
         
         try:
             Blockchain.is_valid_chain(chain)
@@ -35,6 +35,19 @@ class Blockchain:
         Serialize the blockchain into a list of blocks.
         """
         return list(map(lambda block: block.to_json(), self.chain))
+    
+    def from_json(chain_json):
+        """
+        Deserialize a list of serialized blocks into a Blockchain instance.
+        The result will contain a chain list of Block instances.
+        """
+        blockchain = Blockchain()
+        blockchain.chain = list(
+            map(lambda block_json: Block.from_json(block_json), chain_json)
+        )
+        
+        return blockchain
+        
     
     @staticmethod
     def is_valid_chain(chain):

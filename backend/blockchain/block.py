@@ -77,6 +77,13 @@ class Block:
         return Block(**GENESIS_DATA)
     
     @staticmethod
+    def from_json(block_json):
+        """
+        Deserialize a block's json representation back into a block instance.
+        """
+        return Block(**block_json)
+    
+    @staticmethod
     def adjust_difficulty(last_block, new_timestamp):
         """
         Calculate the adjusted difficulty according to the MINE_RATE.
@@ -101,13 +108,13 @@ class Block:
           -the block hash must be a valid combination of the block fields
         """
         if block.last_hash != last_block.hash:
-            raise Exception ('The block last_hash must be correct')
+            raise Exception ('The block last_hash must be correct.')
         
         if hex_to_binary(block.hash)[0:block.difficulty] != '0' * block.difficulty:
-            raise Exception('The proof of work requirement was not met')
+            raise Exception('The proof of work requirement was not met.')
         
         if abs(last_block.difficulty - block.difficulty) > 1:
-            raise Exception('The block difficulty must only adjust by 1')
+            raise Exception('The block difficulty must only adjust by 1.')
         
         reconstructed_hash = crypto_hash(
             block.timestamp,
@@ -118,7 +125,7 @@ class Block:
         )
         
         if block.hash != reconstructed_hash:
-            raise Exception('The block hash must be correct')
+            raise Exception('The block hash must be correct.')
 
 def main():
     genesis_block = Block.genesis()
