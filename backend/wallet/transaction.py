@@ -38,7 +38,7 @@ class Transaction:
             'timestamp': time.time_ns(),
             'amount': sender_wallet.balance,
             'address': sender_wallet.address,
-            'pubic_key': sender_wallet.public_key,
+            'public_key': sender_wallet.public_key,
             'signature': sender_wallet.sign(output)
         }
     
@@ -54,9 +54,9 @@ class Transaction:
         else:
             self.output[recipient] = amount
             
-       self.output[sender_wallet.address] = self.output[sender_wallet.address] - amount
-       
-       self.input = self.create_input(sender_wallet, self.output)
+        self.output[sender_wallet.address] = self.output[sender_wallet.address] - amount
+            
+        self.input = self.create_input(sender_wallet, self.output)
 
 def main():
     transaction = Transaction(Wallet(), 'recipient', 15)
