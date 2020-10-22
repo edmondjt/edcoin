@@ -2,8 +2,8 @@ from backend.blockchain.block import Block
 
 class Blockchain:
     """
-    Blockchain: a public ledger of transactions.
-    Implemented as a list of blocks - data sets of transactions
+     - Blockchain: a public ledger of transactions.
+     - Implemented as a list of blocks - data sets of transactions
     """
     def __init__(self):
         self.chain = [Block.genesis()]
@@ -38,8 +38,8 @@ class Blockchain:
     
     def from_json(chain_json):
         """
-        Deserialize a list of serialized blocks into a Blockchain instance.
-        The result will contain a chain list of Block instances.
+         - Deserialize a list of serialized blocks into a Blockchain instance.
+         - The result will contain a chain list of Block instances.
         """
         blockchain = Blockchain()
         blockchain.chain = list(

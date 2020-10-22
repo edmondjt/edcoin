@@ -20,4 +20,3 @@ for i in range(1000):
     print(f'New block difficulty: {blockchain.chain[-1].difficulty}')
     print(f'Time to mine new block: {time_to_mine}s')
     print(f'Average time to add blocks: {average_time}s\n')
-    

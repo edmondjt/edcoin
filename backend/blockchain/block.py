@@ -15,8 +15,8 @@ GENESIS_DATA = {
 
 class Block:
     """
-    Block: a unit of storage.
-    Store transactions in a blockchain that supports a cryptocurrency.
+     - Block: a unit of storage.
+     - Store transactions in a blockchain that supports a cryptocurrency.
     """
     def __init__(self, timestamp, last_hash, hash, data, difficulty, nonce):
         self.timestamp = timestamp
@@ -87,8 +87,8 @@ class Block:
     def adjust_difficulty(last_block, new_timestamp):
         """
         Calculate the adjusted difficulty according to the MINE_RATE.
-        Increase the difficulty for quickly mined blocks.
-        Decrease the difficulty for slowly mined blocks.
+         - Increase the difficulty for quickly mined blocks.
+         - Decrease the difficulty for slowly mined blocks.
         """
         if (new_timestamp - last_block.timestamp) < MINE_RATE:
             return last_block.difficulty + 1
