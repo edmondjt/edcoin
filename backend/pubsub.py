@@ -31,9 +31,12 @@ class Listener(SubscribeCallback):
             potential_chain.append(block)
             try:
                 self.blockchain.replace_chain(potential_chain)
+                self.transaction_pool.clear_blockchain_transactions(
+                    self.blockchain
+                )
                 print('\n -- Successfully replaced the local chain.')
             except Exception as e:
-                print(f'\n -- Did not replace chain:{e}')
+                print(f'\n -- Did not replace chain: {e}')
         elif message_object.channel == CHANNELS['TRANSACTION']:
             transaction = Transaction.from_json(message_object.message)
             self.transaction_pool.set_transaction(transaction)

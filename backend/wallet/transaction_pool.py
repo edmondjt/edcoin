@@ -1,3 +1,7 @@
+from backend.wallet import transaction
+from backend import blockchain
+
+
 class TransactionPool:
     def __init__(self):
         self.transaction_map = {}
@@ -24,4 +28,14 @@ class TransactionPool:
             lambda transaction: transaction.to_json(), self.transaction_map.values()
             )
         )
-        return transaction_data
+
+    def clear_blockchain_transactions(self, blockchain):
+        """
+        Delete blockchain recorded transactions from the transaction pool.
+        """
+        for block in blockchain.chain:
+            for transaction in block.data:
+                try:
+                    del self.transaction_map[transaction['id']]
+                except KeyError:
+                    pass
