@@ -73,9 +73,12 @@ class Wallet:
         """
         Calculate the balance of the given address considering the transaction data within the blockchain.
         
-        Balance is found by adding the output values that belong to the adress since the most recent transaction by that address.
+        The balance is found by adding the output values that belong to the address since the most recent transaction by that address.
         """
         balance = STARTING_BALANCE
+
+        if not blockchain:
+            return balance
         
         for block in blockchain.chain:
             for transaction in block.data:
@@ -83,8 +86,8 @@ class Wallet:
                     # Any time the address conducts a new transaction it resets its balance
                     balance = transaction['output'][address]
                 elif address in transaction['output']:
-                    transaction += transaction['output'][address]
-                    
+                    balance += transaction['output'][address]
+
         return balance
                   
 def main():
